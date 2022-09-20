@@ -3,6 +3,9 @@ package com.example.alkemyproyect.controllers;
 import com.example.alkemyproyect.entities.Personaje;
 import com.example.alkemyproyect.services.PersonajeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,51 +20,51 @@ public class PersonajeController {
     @GetMapping("")
     public List<Personaje> getAll() throws Exception {
         try {
-            List<Personaje> personaje= personajeService.findAll();
-            return personaje;
+            return personajeService.findAll();
+
         }catch (Exception e){
-            throw new Exception(e.getMessage());
+            throw new Exception();
         }
     }
 
     @GetMapping("/{id}")
-    public Personaje getOne(@PathVariable Long id) throws Exception {
+    public Personaje getOne(@PathVariable Long id) throws Exception{
         try {
-            Personaje personaje=personajeService.findById(id);
-            return personaje;
+            return personajeService.findById(id);
+
         }catch (Exception e){
-            throw new Exception(e.getMessage());
+            throw new Exception();
         }
     }
 
-    @GetMapping("")
+    @PostMapping("")
     public Personaje save(@RequestBody Personaje entity) throws Exception{
         try {
-            Personaje personaje=personajeService.save(entity);
-            return personaje;
+            return personajeService.save(entity);
+
         }catch (Exception e){
-            throw new Exception(e.getMessage());
+            throw new Exception();
         }
     }
 
-    @GetMapping("/{id}")
-    public Personaje update(@PathVariable Long id,@RequestBody Personaje entity) throws Exception{
+    @PutMapping("/{id}")
+    public Personaje update(@PathVariable Long id, @RequestBody Personaje entity) throws Exception{
         try {
-            Personaje personaje=personajeService.update(id,entity);
-            return personaje;
+            return personajeService.update(id,entity);
+
         }catch (Exception e){
-            throw new Exception(e.getMessage());
+            throw new Exception();
         }
     }
 
-    @GetMapping("/{id}")
+    @DeleteMapping("/{id}")
     public boolean delete(@PathVariable Long id) throws Exception{
         try {
             return personajeService.delete(id);
+
         }catch (Exception e){
-            throw new Exception(e.getMessage());
+            throw new Exception();
         }
     }
-
 
 }

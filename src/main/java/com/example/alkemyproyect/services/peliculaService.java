@@ -41,6 +41,7 @@ public class peliculaService implements BaseService<Pelicula>{
     @Transactional
     public Pelicula save(Pelicula entity) throws Exception {
         try {
+            
             entity= peliculaRepository.save(entity);
             return entity;
         }catch (Exception e){
